@@ -1,28 +1,19 @@
 version: '3'
 services:
-  
-  backend:
-    build:
-      context: .
+  web:
+    build: .
     ports:
       - "5000:5000"
     environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: your_username
-      MYSQL_PASSWORD: your_password
-      MYSQL_DB: your_database
+      - MYSQL_HOST=db
     depends_on:
-      - mysql
+      - db
 
-  mysql:
+  db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: your_root_password
-      MYSQL_DATABASE: your_database
-      MYSQL_USER: your_username
-      MYSQL_PASSWORD: your_password
-    volumes:
-      - mysql-data:/var/lib/mysql  # Mount the volume for MySQL data storage
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=default_db
+      - MYSQL_USER=default_user
+      - MYSQL_PASSWORD=default_password
 
-volumes:
-  mysql-data:

@@ -1,90 +1,37 @@
+# Two-Tier Flask App with Docker Compose
 
-# Flask App with MySQL Docker Setup
-
-This is a simple Flask app that interacts with a MySQL database. The app allows users to submit messages, which are then stored in the database and displayed on the frontend.
+This is a simple Flask app that interacts with a MySQL database. Users can submit messages, which are stored in the database and displayed on the frontend.
 
 ## Prerequisites
 
-Before you begin, make sure you have the following installed:
+- Docker: Make sure you have Docker installed on your machine.
 
-- Docker
-- Git (optional, for cloning the repository)
+## Getting Started
+1. Clone this repository:
 
-## Setup
+2. Build and run the Docker containers:
 
-1. Clone this repository (if you haven't already):
+[200~
+3. Access the app in your browser at [http://localhost:5000](http://localhost:5000).
 
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   ```
+## Project Structure
 
-2. Navigate to the project directory:
+- `app.py`: Flask app code for message submission and retrieval.
+- `requirements.txt`: List of Python packages required by the app.
+- `templates/`: Directory containing the HTML template for the frontend.
+- `Dockerfile`: Dockerfile to build the Flask app image.
+- `docker-compose.yml`: Configuration for Docker Compose to set up the services.
 
-   ```bash
-   cd your-repo-name
-   ```
+## Customization
 
-3. Create a `.env` file in the project directory to store your MySQL environment variables:
+- Adjust environment variables in the `docker-compose.yml` file to customize MySQL database settings.
+- Modify the `index.html` template in the `templates/` directory to change the frontend.
 
-   ```bash
-   touch .env
-   ```
+## Acknowledgments
 
-4. Open the `.env` file and add your MySQL configuration:
+This project was created as part of a DevOps exercise to demonstrate containerization using Docker and Docker Compose.
 
-   ```
-   MYSQL_HOST=mysql
-   MYSQL_USER=your_username
-   MYSQL_PASSWORD=your_password
-   MYSQL_DB=your_database
-   ```
+## License
 
-## Usage
-
-1. Start the containers using Docker Compose:
-
-   ```bash
-   docker-compose up --build
-   ```
-
-2. Access the Flask app in your web browser:
-
-   - Frontend: http://localhost
-   - Backend: http://localhost:5000
-
-3. Create the `messages` table in your MySQL database:
-
-   - Use a MySQL client or tool (e.g., phpMyAdmin) to execute the following SQL commands:
-   
-     ```sql
-     CREATE TABLE messages (
-         id INT AUTO_INCREMENT PRIMARY KEY,
-         message TEXT
-     );
-     ```
-
-4. Interact with the app:
-
-   - Visit http://localhost to see the frontend. You can submit new messages using the form.
-   - Visit http://localhost:5000/insert_sql to insert a message directly into the `messages` table via an SQL query.
-
-## Cleaning Up
-
-To stop and remove the Docker containers, press `Ctrl+C` in the terminal where the containers are running, or use the following command:
-
-```bash
-docker-compose down
-```
-
-## Notes
-
-- Make sure to replace placeholders (e.g., `your_username`, `your_password`, `your_database`) with your actual MySQL configuration.
-
-- This is a basic setup for demonstration purposes. In a production environment, you should follow best practices for security and performance.
-
-- Be cautious when executing SQL queries directly. Validate and sanitize user inputs to prevent vulnerabilities like SQL injection.
-
-- If you encounter issues, check Docker logs and error messages for troubleshooting.
-
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 

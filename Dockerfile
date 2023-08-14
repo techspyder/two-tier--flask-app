@@ -1,25 +1,19 @@
-# Use an official Python runtime as the base image
-FROM python:3.9-slim
+#Official python base image 
+FROM python:3.9
 
-# Set the working directory in the container
+#set Working Dir
 WORKDIR /app
 
-# install required packages for system
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y gcc default-libmysqlclient-dev pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+#Copy Project files into container
+COPY . /app
 
-# Copy the requirements file into the container
-COPY requirements.txt .
+#install dependencies
+RUN pip install -r requirements.txt
 
-# Install app dependencies
-RUN pip install mysqlclient
-RUN pip install --no-cache-dir -r requirements.txt
+#Expose port 
+EXPOSE 5000
 
-# Copy the rest of the application code
-COPY . .
-
-# Specify the command to run your application
+#command to run flask app
 CMD ["python", "app.py"]
+
 
